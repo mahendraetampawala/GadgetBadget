@@ -1,8 +1,14 @@
+/**
+ * 
+ */
 package model;
 
 import java.sql.*; 
 
-
+/**
+ * @author Mahendra
+ *
+ */
 public class Item 
 { //A common method to connect to the DB
 	private Connection connect() 
