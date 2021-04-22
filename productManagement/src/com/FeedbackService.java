@@ -3,12 +3,12 @@
  */
 package com;
 
+import model.Feedback;
 /**
  * @author Mahendra
  *
  */
 
-import model.Item; 
 //For REST Service
 import javax.ws.rs.*; 
 import javax.ws.rs.core.MediaType; 
@@ -19,20 +19,23 @@ import org.jsoup.*;
 import org.jsoup.parser.*; 
 import org.jsoup.nodes.Document; 
 
+/**
+ * @author Mahendra
+ *
+ */
 
 
 
-@Path("/Items")//@Path annotation is used to bind URI pattern to a Java method. 
-public class productItemService 
-{ 
-	 Item itemObj = new Item(); 
+@Path("/Feedbacks")//@Path annotation is used to bind URI pattern to a Java method. 
+public class FeedbackService { 
+	 Feedback fedobj = new Feedback(); 
 	@GET
 	@Path("/") //@Path annotation is used to bind URI pattern to a Java method.
 	@Produces(MediaType.TEXT_HTML) 
 	
 	public String readItems() 
 	 { 
-		 return itemObj.readItems();
+		 return fedobj.readItems();
 	 } 
 	
 	
@@ -43,12 +46,11 @@ public class productItemService
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) //@Consumes all the response methods accept the specified MIME types by default.
 	@Produces(MediaType.TEXT_PLAIN) 
 	
-	public String insertItem(@FormParam("itemCode") String itemCode, 
-	 @FormParam("itemName") String itemName, 
-	 @FormParam("itemPrice") String itemPrice, 
-	 @FormParam("itemDesc") String itemDesc) 
+	public String insertItem(@FormParam("FeedbackID") String FeedbackID, 
+	 
+	 @FormParam("FeedBack") String FeedBack) 
 	{ 
-	 String output = itemObj.insertItem(itemCode, itemName, itemPrice, itemDesc); 
+	 String output = fedobj.insertItem(FeedbackID,FeedBack); 
 	return output; 
 	}
 
@@ -64,12 +66,10 @@ public class productItemService
 		
 	 JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject(); //Convert the input string to a JSON object 
 	
-	 String itemID = itemObject.get("itemID").getAsString(); //Read the values from the JSON object
-	 String itemCode = itemObject.get("itemCode").getAsString(); 
-	 String itemName = itemObject.get("itemName").getAsString(); 
-	 String itemPrice = itemObject.get("itemPrice").getAsString(); 
-	 String itemDesc = itemObject.get("itemDesc").getAsString(); 
-	 String output = itemObj.updateItem(itemID, itemCode, itemName, itemPrice, itemDesc); 
+
+	 String FeedBack = itemObject.get("FeedBack").getAsString(); 
+	
+	 String output = fedobj.updateItem(FeedBack); 
 	return output; 
 	}
 	
@@ -85,8 +85,8 @@ public class productItemService
 	 Document doc = Jsoup.parse(itemData, "", Parser.xmlParser()); //Convert the input string to an XML document
 	 
 	
-	 String itemID = doc.select("itemID").text(); //Read the value from the element <itemID>
-	 String output = itemObj.deleteItem(itemID); 
+	 String RefID = doc.select("FID").text(); //Read the value from the element <itemID>
+	 String output = fedobj.deleteItem(RefID); 
 	return output; 
 	}
 

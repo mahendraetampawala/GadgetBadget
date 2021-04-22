@@ -10,23 +10,23 @@ import java.sql.*;
  *
  */
 public class Item 
-{ //A common method to connect to the DB
-	private Connection connect() 
+{ 
+	private Connection connect() // method to connect to the DB
 	 { 
 		 Connection con = null; 
 		 try
 		 { 
 		 Class.forName("com.mysql.jdbc.Driver"); 
 		 
-		 //Provide the correct details: DBServer/DBName, username, password 
-		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/newdb", "root", ""); 
+		  
+		 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/newdb", "root", ""); //DB Connection
 		 } 
 		 catch (Exception e) 
 		 {e.printStackTrace();} 
 		 return con; 
 	 } 
 	
-	public String insertItem(String code, String name, String price, String desc) 
+	public String insertItem(String code, String name, String price, String desc) //declaring a method to insert values to the db
 	 { 
 		 String output = ""; 
 		 try
@@ -64,8 +64,8 @@ public class Item
 		 Connection con = connect(); 
 		 if (con == null) 
 		 {return "Error while connecting to the database for reading."; } 
-		 // Prepare the html table to be displayed
-		 output = "<table border='1'><tr><th>Item Code</th><th>Item Name</th>" +
+		
+		 output = "<table border='1'><tr><th>Item Code</th><th>Item Name</th>" + // Prepare a html table 
 		 "<th>Item Price</th>" + 
 		 "<th>Item Description</th>" +
 		 "<th>Update</th><th>Remove</th></tr>"; 
@@ -73,16 +73,16 @@ public class Item
 		 String query = "select * from items"; 
 		 Statement stmt = con.createStatement(); 
 		 ResultSet rs = stmt.executeQuery(query); 
-		 // iterate through the rows in the result set
-		 while (rs.next()) 
+		 
+		 while (rs.next()) // iterate through the rows in the result set
 		 { 
 		 String itemID = Integer.toString(rs.getInt("itemID")); 
 		 String itemCode = rs.getString("itemCode"); 
 		 String itemName = rs.getString("itemName"); 
 		 String itemPrice = Double.toString(rs.getDouble("itemPrice")); 
 		 String itemDesc = rs.getString("itemDesc"); 
-		 // Add into the html table
-		 output += "<tr><td>" + itemCode + "</td>"; 
+		
+		 output += "<tr><td>" + itemCode + "</td>";  // Add into the html table
 		 output += "<td>" + itemName + "</td>"; 
 		 output += "<td>" + itemPrice + "</td>"; 
 		 output += "<td>" + itemDesc + "</td>"; 
@@ -94,8 +94,8 @@ public class Item
 		 + "'>" + "</form></td></tr>"; 
 		 } 
 		 con.close(); 
-		 // Complete the html table
-		 output += "</table>"; 
+		 
+		 output += "</table>"; // Complete the html table
 		 } 
 		 catch (Exception e) 
 		 { 
@@ -105,7 +105,7 @@ public class Item
 		 return output; 
 	 }
 	
-	public String updateItem(String ID, String code, String name, String price, String desc)
+	public String updateItem(String ID, String code, String name, String price, String desc)//declaring a method to update items in database.
 	 { 
 		 String output = ""; 
 		 try
@@ -135,7 +135,7 @@ public class Item
 		 return output; 
 	 } 
 	
-	public String deleteItem(String itemID) 
+	public String deleteItem(String itemID) //declaring a method to delete items from the database
 	 { 
 		 String output = ""; 
 		 try
