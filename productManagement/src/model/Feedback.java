@@ -69,7 +69,7 @@ public class Feedback
 		 if (con == null) 
 		 {return "Error while connecting to the database for reading."; } 
 		
-		 output = "<table border='1'><tr><th>FID</th><th>FeedbackID</th>" + // Prepare the html table to be displayed
+		 output = "<table border='1'><tr><th>FeedbackID</th>" + // Prepare the html table to be displayed
 		 "<th>FeedBack</th>" + "<th>CustomerID</th>"+
 		 "<th>Update</th><th>Remove</th></tr>"; 
 		 
