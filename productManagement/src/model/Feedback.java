@@ -31,7 +31,7 @@ public class Feedback
 		 return con; 
 	 } 
 	
-	public String insertItem(String code, String name) 
+	public String insertItem(String code, String name,String CustomerID) 
 	 { 
 		 String output = ""; 
 		 try
@@ -40,13 +40,13 @@ public class Feedback
 		 if (con == null) 
 		 {return "Error while connecting to the database for inserting."; } 
 		 
-		 String query = " insert into feedback (`FID`,`FeedbackID`,`FeedBack`)"+ " values (?, ?, ?)"; // create a prepared statement
+		 String query = " insert into feedback (`FID`,`FeedbackID`,`FeedBack`,`CustomerID`)"+ " values (?, ?, ?, ?)"; // create a prepared statement
 		 PreparedStatement preparedStmt = con.prepareStatement(query); 
 		 
 		 preparedStmt.setInt(1, 0); // binding values
 		 preparedStmt.setString(2, code); 
 		 preparedStmt.setString(3, name); 
-		
+		 preparedStmt.setString(4, CustomerID); 
 		 preparedStmt.execute(); 
 		 con.close(); 
 		 output = "Inserted successfully"; 
@@ -69,7 +69,7 @@ public class Feedback
 		 {return "Error while connecting to the database for reading."; } 
 		
 		 output = "<table border='1'><tr><th>FID</th><th>FeedbackID</th>" + // Prepare the html table to be displayed
-		 "<th>FeedBack</th>" + 
+		 "<th>FeedBack</th>" + "<th>CustomerID</th>"+
 		 "<th>Update</th><th>Remove</th></tr>"; 
 		 
 		 String query = "select * from feedback"; 
@@ -81,12 +81,12 @@ public class Feedback
 		 String FID = Integer.toString(rs.getInt("FID")); 
 		 String FeedbackID = rs.getString("FeedbackID"); 
 		 String FeedBack = rs.getString("FeedBack"); 
-		
+		 String CustomerID = rs.getString("CustomerID"); 
 		 
 		 output += "<tr><td>" + FID + "</td>"; // Add into the html table
 		 output += "<td>" + FeedbackID + "</td>"; 
 		 output += "<td>" + FeedBack + "</td>"; 
-		 
+		 output += "<td>" + CustomerID + "</td>"; 
 		 
 		 output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"//designing buttons
 		 + "<td><form method='post' action='items.jsp'>"
