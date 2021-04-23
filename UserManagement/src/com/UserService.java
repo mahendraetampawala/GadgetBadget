@@ -89,7 +89,7 @@ public class UserService
 	 Document doc = Jsoup.parse(itemData, "", Parser.xmlParser()); //Convert the input string to an XML document
 	 
 	
-	 String userID = doc.select("userID").text(); //Read the value from the element <itemID>
+	 String userID = doc.select("userID").text(); //Read the value from the element <userID>
 	 String output = userObj.deleteUser(userID); 
 	return output; 
 	}	
