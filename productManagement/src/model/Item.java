@@ -65,7 +65,7 @@ public class Item
 		 if (con == null) 
 		 {return "Error while connecting to the database for reading."; } 
 		
-		 output = "<table border='1'><tr><th>Item Code</th><th>Item Name</th>" + // Prepare a html table 
+		 output = "<table border='1'><tr><th>ItemID</th><th>Item Code</th><th>Item Name</th>" + // Prepare a html table 
 		 "<th>Item Price</th>" + 
 		 "<th>Item Description</th>" +
 		 "<th>Update</th><th>Remove</th></tr>"; 
@@ -82,7 +82,9 @@ public class Item
 		 String itemPrice = Double.toString(rs.getDouble("itemPrice")); 
 		 String itemDesc = rs.getString("itemDesc"); 
 		
-		 output += "<tr><td>" + itemCode + "</td>";  // Add into the html table
+		 
+		 output += "<tr><td>" + itemID + "</td>"; // Add into the html table
+		 output += "<td>" + itemCode + "</td>";
 		 output += "<td>" + itemName + "</td>"; 
 		 output += "<td>" + itemPrice + "</td>"; 
 		 output += "<td>" + itemDesc + "</td>"; 
