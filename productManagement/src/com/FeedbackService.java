@@ -48,9 +48,9 @@ public class FeedbackService {
 	
 	public String insertItem(@FormParam("FeedbackID") String FeedbackID, 
 	 
-	 @FormParam("FeedBack") String FeedBack, @FormParam("FeedBack") String CustomerID) 
+	 @FormParam("FeedBack") String FeedBack, @FormParam("CustomerID") String CustomerID, @FormParam("ItemID") String ItemID) 
 	{ 
-	 String output = fedobj.insertItem(FeedbackID,FeedBack,CustomerID); 
+	 String output = fedobj.insertItem(FeedbackID,FeedBack,CustomerID,ItemID); 
 	return output; 
 	}
 
