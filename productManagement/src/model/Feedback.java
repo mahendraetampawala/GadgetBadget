@@ -87,6 +87,7 @@ public class Feedback
 		 String itemID = Integer.toString(rs.getInt("ItemID")); 
 		 
 		 // Add into the html table
+		 output += "<td>" + FID + "</td>"; 
 		 output += "<td>" + FeedbackID + "</td>"; 
 		 output += "<td>" + FeedBack + "</td>"; 
 		 output += "<td>" + CustomerID + "</td>"; 
@@ -109,7 +110,7 @@ public class Feedback
 		 return output; 
 	 }
 	
-	public String updateItem(String name)
+	public String updateItem(String Feedback)
 	 { 
 		 String output = ""; 
 		 try
@@ -123,7 +124,7 @@ public class Feedback
 		 
 		 
 	
-		 preparedStmt.setString(1, name);// binding values 
+		 preparedStmt.setString(1, Feedback);// binding values 
 	
 		 preparedStmt.execute(); 
 		 con.close(); 
