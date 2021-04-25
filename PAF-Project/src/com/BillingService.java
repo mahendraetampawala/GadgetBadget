@@ -16,7 +16,7 @@ public class BillingService {
 	Billing pay = new Billing();
 	
 	// read operation through postman
-	//////////
+	//////////////
 		@GET
 		@Path("/readItem")
 		@Produces(MediaType.TEXT_HTML)
