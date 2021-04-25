@@ -32,7 +32,7 @@ public class UserService
 	@Path("/") //@Path annotation is used to bind URI pattern to a Java method.
 	@Produces(MediaType.TEXT_HTML) 
 	
-	public String readItems() 
+	public String readUser() 
 	 { 
 		 return userObj.readUser();
 	 } 

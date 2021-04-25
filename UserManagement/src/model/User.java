@@ -73,7 +73,9 @@ public class User {
 		 if (con == null) 
 		 {return "Error while connecting to the database for reading."; } 
 		
-		 output = "<table border='1'><tr><th>user Name</th><th>Type</th>" + // Prepare a html table 
+		// Prepare a html table 
+		 output = "<table border='1'><tr><th>userId</th><th>Name</th>"+
+		 "<th>Type</th>" +  
 		 "<th>email</th>" + 
 		 "<th>username</th>" +
 		 "<th>password</th>" +
@@ -92,7 +94,9 @@ public class User {
 		 String username = rs.getString("username"); 
 		 String password = rs.getString("password"); 
 		
-		 output += "<tr><td>" + name + "</td>";  // Add into the html table
+		// Add into the html table
+		 output += "<tr><td>" + userID + "</td>";
+		 output += "<td>" + name + "</td>";  
 		 output += "<td>" + type + "</td>"; 
 		 output += "<td>" + email + "</td>"; 
 		 output += "<td>" + username + "</td>";
@@ -102,8 +106,8 @@ public class User {
 		 output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
 		 + "<td><form method='post' action='user.jsp'>"
 		+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-		 + "<input name='userID' type='hidden' value='" + userID 
-		 + "'>" + "</form></td></tr>"; 
+		 /*+ "<input name='userID' type='hidden' value='" + userID 
+		 + "'>" */+ "</form></td></tr>"; 
 		 } 
 		 con.close(); 
 		 
@@ -174,7 +178,7 @@ public class User {
 		 } 
 		 catch (Exception e) 
 		 { 
-		 output = "Error while deleting the userS."; 
+		 output = "Error while deleting the user."; 
 		 System.err.println(e.getMessage()); 
 		 } 
 		 return output; 
